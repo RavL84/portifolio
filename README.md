@@ -8,6 +8,6 @@ O controle das tarefas desse projetos erá realisado no GitHub.
 
 📦 Nova funcionalidade
 ⬆️ Atualização
-:beatle: Correção de Bug
+:beach Correção de Bug
 🏁 Relese
 
