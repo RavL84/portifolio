@@ -2,21 +2,95 @@
 
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
 
-
+/*Essas são configurações globais que serão realizadas em toda a pagina.*/
 *{
     margin: 0px;
     padding: 0px;
+    list-style: none;
+    text-decoration: none;
     
 }
 
+/*Aqui criamos 3 variaveis para armazenar as nossas 3 fontes escolhidas.*/
+:root{
+    --font-primary: 'Baloo Da 2', serif;
+    --font-secundary:'Josefin Slab', serif;
+    --font-action: 'Mulish', serif;
+}
 
+            .hamburguer{
+                width: 60px;
+                height: 60px;
+                right: 10px;
+                top: 10px;
+                background-color: #6a3093;
+                position: fixed;
+                border-radius: 15px;
+                z-index: 1;
+                box-shadow:rgba(0, 0, 0,0.8);
+                cursor: pointer;
+            }
+            .hamburguer:hover{
+                background-color: #a044ff;
+            }
 
+            .hamburguer::after{
+                content: '';
+                position: absolute;
+                top: 30%;
+                left: 15%;
+                width: 70%;
+                height: 10px;
+                border-radius: 20px;
+                background-color: #fff;
+                transition: 1s;
+            }
+
+            .hamburguer::before{
+                content: '';
+                position: absolute;
+                top: 60%;
+                right: 25%;
+                width: 40%;
+                height: 10px;
+                border-radius: 20px;
+                background-color: #fff;
+                transition: 1s;
+
+            }
+
+            #hamburguer:checked ~ label .hamburguer:after{
+                transform: rotate(225deg);
+                width: 70%;
+                height: 10%;
+                top:45%;
+                left:15%;
+            }
+
+            #hamburguer:checked ~ label .hamburguer:before{
+                transform: rotate(-225deg);
+                width: 70%;
+                height: 10%;
+                top:45%;
+                left:15%;
+            }
+
+            .show-menu .hamburguer{
+                right: 16rem;
+            }
+
+/*Essa parte configura o conteudo que está dentro do header*/
 header{
     width: 100%;
     height: 100vh;
+
+    /*Essa propriedade faz com que o conteudo da pagina não ultrapasse o espaço da div*/
     overflow: hidden;
+   
     position: relative;
 }
+
+
 
 .img-wrapper{
     width: 100%;
@@ -27,13 +101,18 @@ header{
 .img-wrapper img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
+
+    /*Essa propriedade ajusta a imagem para que ela fique dentro da div estabelecida*/ 
+    object-fit: cover; 
+
     opacity: 0.5;
-    animation: zoom 25s;
+
+    /*Aqui estamos implementando uma animação criada abaixo com o @keyframes.*/ 
+    animation: zoom 25s; 
 }
 
 /*Aqui criamos o keysframe faz com que a imagem comece com uma escala e termina com outra fazendo uma animação em CSS*/
-@keyframes zoom{
+@keyframes zoom{ 
     0%{
         transform: scale(1.3);
     }
@@ -42,17 +121,23 @@ header{
     }
 }
 
-.banner{
+
+/*O banner tem uma posição absoluta dentro da posição relativa de reader*/
+.banner{  
+
     position: absolute;
     top: 30%;
     left: 15%;
 }
-/*Aqui criamos a animação do banner*/
+
+/*Aqui criamos a animação do banner que faz o objeto antes desaparecido vir de baixo para cima*/
 @keyframes moveBanner {
     0%{
+        /*A animação se move no eixo y 10 vezes o tamanho padrão*/
         transform: translateY(10rem) rotateY(.30deg);
     }
     100%{
+        /*Ao final ela estara na posição original do elemento com uma opacidade total*/
         transform: translateY(0) rotateY(0) ;
         opacity: 1;
     }
@@ -61,27 +146,37 @@ header{
 .banner h1{
     color: #ffffff;
     font-size: 3rem;
-    font-family: 'Baloo Da 2', serif;
+
+    /*Aqui iniciamos a nossa primeira variavel que contém a nossa fonte*/
+    font-family: var(--font-primary);
     font-weight: 200;
+
+    /*Essa propriedade cria uma sombra no texto.*/
     text-shadow: .2rem .3rem 2px rgba(0, 0, 0, .4);
     line-height: 3.5rem;
     margin-bottom: 2rem;
+
+    /*Ao ativar o banner nós podemos configurar o tempo de transição*/
     animation: moveBanner 1s 0.5s forwards;
     opacity: 0;
 }
 
+/*Configurações do paragrafo dentro do banner*/
 .banner p{
-    font-family: 'Josefin Slab', serif;
+    font-family: var(--font-secundary);
     color: #fff;
     font-size: 2rem;
     text-shadow: .2rem .2rem 2px rgba(0, 0, 0, .4);
     margin-bottom: 2rem;
+
+    /*Iniando a animação*/
     animation: moveBanner 1s 0.7s forwards;
     opacity: 0;
 }
 
+/*Todas as configurações dos botões dentro do banner*/
 .banner button{
-    font-family: 'Mulish', serif;
+    font-family: var(--font-action);
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -95,8 +190,116 @@ header{
     opacity: 0;
 }
 
+/*Configuração exibida ao passar o mouse*/
 .banner button:hover{
     opacity: 0.8;
     color: #000;
 }
 
+/*Configuração do menu lateral*/
+.sidebar{
+    width: 20rem;
+    height: 100vh;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: -20rem ;
+    transition: 1s;
+    
+
+}
+
+.show-menu .sidebar{
+    
+    right: 0;
+}
+
+/*Configuração da caixa dos itens */
+.menu {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/*Configuração de cada item*/
+.menu-item{
+    text-align: center;
+    margin-bottom: .5rem;
+
+}
+
+/*Configuração do link dentro de cada item*/
+.menu-link{
+    font-family: var(--font-action);
+    font-size: 2rem ;
+    color: #555;
+
+    /*Sempre que o elemento mudar a cor ele levará 1s para a troca. */
+    transition: color 1s;
+    
+}
+
+.menu-link:hover{
+    color: #6a3093;
+}
+
+.hamburguer span{
+    position: absolute;
+    left: 5rem;
+    height: 2rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-family:var(--font-action) ;
+    color: #fff;
+    background-color: #a044ff;
+    opacity: 0;
+}
+
+.hamburguer span::before{
+    content: "";
+    position: absolute;
+    
+    border-right:.5rem solid #a044ff ;
+    border-top:.5rem solid transparent ;
+    border-left:.5rem solid transparent ;
+    border-bottom:.5rem solid transparent ;
+    left: -1rem;
+    
+}
+
+.show-menu .hamburguer:hover span {
+    transition: 1s;
+    opacity: 1;
+}
+
+.social-media{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social-media i{
+    background-color: #6a3093;
+    color: rgba(255, 255, 255, 1);
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 1s;
+    
+
+}
+
+.social-media i:hover{
+    background-color: #a044ff;
+
+}
