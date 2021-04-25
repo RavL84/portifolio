@@ -9,7 +9,7 @@ O controle das tarefas desse projetos erá realisado no GitHub.
 <<<<<<< HEAD
 - 📦 Nova funcionalidade
 - ⬆️ Atualização
-- :beetle: Correção de Bug
+- 🐞 Correção de Bug
 - 🏁 Relese
 
 
