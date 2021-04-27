@@ -29,7 +29,7 @@ function atualizarPreco() {
     let preco = qtde * 100;
     if (temJS) preco *= 1.1
     if (incluiLayout ) preco += 500
-    let taxaDeUrgencia = 1 - prazo*0.1;
+    let taxaDeUrgencia = 1 - prazo*0.2;
     preco *= 1 + taxaDeUrgencia;
        
     
